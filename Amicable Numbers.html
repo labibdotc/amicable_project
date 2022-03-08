@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Ambicable numbers </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,200;1,600&family=Sansita+Swashed:wght@900&display=swap" rel="stylesheet">
+        <style type = "text/css">
+            div {
+                /* display: block;
+                border: 1px solid #000; */
+                font-family: 'Poppins', sans-serif;
+                font-family: 'Sansita Swashed', cursive;
+                font-size: 62px;
+                color: #FFA07A
+            }
+            body{
+                background-color: #fae2c6;
+            }
+        </style>
+    </head>
+    <body>
+        <form name = "myform">
+            <!-- <input type = "text"> -->
+            
+                <label for="num1" >First number:</label><br>
+                <input type="text" id="num1" name="num1"><br>
+            
+                <label for="num2">Second number: </label><br>
+                <input type="text" id="num2" name="num2">
+    
+                
+        </form>
+        <button onclick="isAmicable()">click me</button>
+        <div id = "Amicableprint"> </div>
+        <div id = "displayFactors"> </div>
+        <script type="text/javascript">
+            //make an onclick function with the submit button!!
+            //get factors onto an int
+            function isAmicable() {
+                var factors1 = [];
+                var factors2 = [];
+
+                var n1 = document.forms["myform"]["num1"].value;
+                
+                let sum1 = 0;
+                for(let i = 1; i < n1; ++i) {
+                    if (isAfactor(i, n1)) {
+                        factors1.push(i);
+                        sum1 = sum1 + i;
+                    }
+                }
+                
+                var n2 = document.forms["myform"]["num2"].value;
+                let sum2 = 0;
+                for(let j = 1; j < n2; j++) {
+                    
+                    if (isAfactor(j, n2)) {
+                        factors2.push(j);
+                        sum2 = sum2 + j;
+                    }
+                }
+                
+                let message ="The numbers: " + n1 + " and " + n2 + ((sum2 == n1 && n2 == sum1) ? " are" : " are not") +
+                    " amicable";
+                document.getElementById('Amicableprint').innerHTML = message;
+                message = "Factors for " + n1 + ": ";
+                for(let i = 0; i < factors1.length; i++) {
+                    message += ((i > 0) ? ", ": "") + factors1[i];
+                }
+                message += "<br> and for " + n2 + ": "; 
+                for(let i = 0; i < factors2.length; i++) {
+                    message += ((i > 0) ? ", ": "") + factors2[i];
+                }
+                document.getElementById('displayFactors').innerHTML = message;
+
+            }
+
+            function isAfactor(x,y) {
+                if(y%x == 0) {
+                    return true;
+                }
+                return false;
+            }
+            
+
+
+
+        </script>
+    </body>
+</html>
